@@ -229,7 +229,6 @@
             <th>Gate Frame</th>
             <th>Wooden Wall</th>
             <th>Metal Wall</th>
-            <th class="editable">Include %</th>
             <th class="editable">Include</th>
         </tr>
     </thead>
@@ -287,22 +286,17 @@ function generateRows(data) {
             <td><input type="text" value="${item.gateFrame}" readonly></td>
             <td><input type="text" value="${item.woodenWall}" readonly></td>
             <td><input type="text" value="${item.metalWall}" readonly></td>
-            <td class="editable"><input type="number" placeholder="100%" value="${item.includePercent}" min="0" max="100" disabled></td>
             <td class="editable"><input type="checkbox" ${item.include ? 'checked' : ''}></td>
         `;
         
         // Add event listener for the checkbox to enable/disable the Include % field and highlight the row
-        const checkbox = row.querySelector('td:nth-child(10) input[type="checkbox"]');
-        const percentField = row.querySelector('td:nth-child(9) input[type="number"]');
+        const checkbox = row.querySelector('td:nth-child(9) input[type="checkbox"]');
 
         checkbox.addEventListener('change', () => {
             // Enable or disable the percentage field based on the checkbox state
             if (checkbox.checked) {
-                percentField.disabled = false;
                 row.classList.add('highlight');  // Add highlight class if checked
             } else {
-                percentField.disabled = true;
-                percentField.value = ''; // Clear the value if unchecked
                 row.classList.remove('highlight');  // Remove highlight class if unchecked
             }
         });
@@ -312,39 +306,8 @@ function generateRows(data) {
 
         // Trigger change event in case some rows are pre-checked
         if (checkbox.checked) {
-            percentField.disabled = false;
             row.classList.add('highlight');  // Highlight row if pre-checked
-        } else {
-            percentField.disabled = true;
         }
-    });
-}
-
-// Add event listener to validate Include % field
-function addValidation() {
-    const percentageFields = document.querySelectorAll('input[type="number"][placeholder="100%"]');
-    percentageFields.forEach(input => {
-        input.addEventListener('input', () => {
-            // Parse the current value as a number
-            let value = parseFloat(input.value);
-            
-            // Correct the value if it's out of bounds
-            if (value < 0) {
-                input.value = 100;
-            } else if (value > 100) {
-                input.value = 100;
-            }
-        });
-
-        // Optional: Add a blur event listener to handle invalid inputs after editing
-        input.addEventListener('blur', () => {
-            let value = parseFloat(input.value);
-
-            // Reset to a default value if the input is invalid or empty
-            if (isNaN(value) || input.value.trim() === '') {
-                input.value = 100; // Default value
-            }
-        });
     });
 }
 
@@ -377,8 +340,7 @@ document.getElementById('typeFilter').addEventListener('change', filterRows);
 
 // Generate rows and add validation
 generateRows(data);
-addValidation();
 </script>
-
+<script src="script.js" defer></script>
 </body>
 </html>
