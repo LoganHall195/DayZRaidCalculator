@@ -5,169 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DayZ Raid Calculator</title>
     <style>
-        /* background-image: url('images/image1.png');  */
+        body {
+            margin: 0 auto;
+            max-width: 1500px;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding: 20px;
+            background-image: url('images/sweetchili2.png'); /* The background image */
+            background-position: top center; /* Align the image to the top */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-size: 100% auto; /* Ensure the image covers the full width */
+            background-color: #2e2e2e; /* Fallback background color */
+        }
 
-body {
-    margin: 0 auto;
-    max-width: 1500px;
-    font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-    background-image: url('images/sweetchili2.png'); /* The background image */
-    background-position: top center; /* Align the image to the top */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-size: 100% auto; /* Ensure the image covers the full width */
-    background-color: #2e2e2e; /* Fallback background color */
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed; /* Prevent columns from wrapping */
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    table-layout: fixed; /* Prevent columns from wrapping */
-}
+        th, td {
+            padding: 10px;
+            border: 1px solid #555;
+            text-align: center;
+        }
 
-th, td {
-    padding: 10px;
-    border: 1px solid #555;
-    text-align: center;
-}
+        tbody tr.highlight {
+            background-color: rgba(128, 128, 128, 0.66) !important; /* Force priority for highlighted rows */
+        }
 
-tbody tr.highlight {
-    background-color: rgba(128, 128, 128, 0.66) !important; /* Force priority for highlighted rows */
-}
+        th {
+            background-color: rgba(0, 0, 0, 0.66); /* Apply opacity */
+        }
 
-th {
-    background-color: rgba(0, 0, 0, 0.66); /* Apply opacity */
-}
+        th.editable {
+            color: yellow;
+        }
 
-th.editable {
-    color: yellow;
-}
+        td input[type="number"], td input[type="text"], td input[type="percentage"], td input[type="checkbox"] {
+            background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+            color: white;
+            border: none;
+            padding: 5px;
+            width: 80%; /* Center the input fields */
+            text-align: center;
+        }
 
-td input[type="number"], td input[type="text"], td input[type="percentage"], td input[type="checkbox"] {
-    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
-    color: white;
-    border: none;
-    padding: 5px;
-    width: 80%; /* Center the input fields */
-    text-align: center;
-}
+        td input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0; /* Remove margin for checkboxes */
+        }
 
-td input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin: 0; /* Remove margin for checkboxes */
-}
+        td input[disabled] {
+            background-color: #555;
+            color: #777;
+        }
 
-td input[disabled] {
-    background-color: #555;
-    color: #777;
-}
+        /* Highlight editable fields */
+        td.editable input {
+            background-color: rgba(68, 68, 68, .66); /* Apply opacity */
+            border: 1px solid #bbb;
+        }
 
-/* Highlight editable fields */
-td.editable input {
-    background-color: rgba(68, 68, 68, .66); /* Apply opacity */
-    border: 1px solid #bbb;
-}
+        td.readonly input {
+            background-color: rgba(85, 85, 85, .66); /* Apply opacity */
+        }
 
-td.readonly input {
-    background-color: rgba(85, 85, 85, .66); /* Apply opacity */
-}
+        /* Highlighted row takes precedence */
+        tbody tr.highlight {
+            background-color: rgba(119, 119, 119, .66); /* Apply opacity */
+        }
 
-/* Highlighted row takes precedence */
-tbody tr.highlight {
-    background-color: rgba(119, 119, 119, .66); /* Apply opacity */
-}
+        /* Default alternating row colors */
+        tbody tr:nth-child(odd) {
+            background-color: rgba(19, 19, 19, 0.66); /* Apply opacity */
+        }
 
-/* Default alternating row colors */
-tbody tr:nth-child(odd) {
-    background-color: rgba(19, 19, 19, 0.66); /* Apply opacity */
-}
+        tbody tr:nth-child(even) {
+            background-color: rgba(58, 58, 58, .66); /* Apply opacity */
+        }
 
-tbody tr:nth-child(even) {
-    background-color: rgba(58, 58, 58, .66); /* Apply opacity */
-}
+        /* Flexbox container for the top section */
+        #topSection {
+            display: flex;
+            align-items: flex-start; /* Align items at the top */
+            justify-content: space-between;
+            margin-bottom: 20px; /* Space between top section and table */
+        }
 
-/* Flexbox container for the top section */
-#topSection {
-    display: flex;
-    align-items: flex-start; /* Align items at the top */
-    justify-content: space-between;
-    margin-bottom: 20px; /* Space between top section and table */
-}
+        /* Title and Filter Section */
+        #titleAndFilter {
+            flex: 2;
+            padding-left: 20px; /* Adds space from the left edge */
+        }
 
-/* Title and Filter Section */
-#titleAndFilter {
-    flex: 2;
-    padding-left: 20px; /* Adds space from the left edge */
-}
+        #titleAndFilter h1 {
+            margin-bottom: 10px; /* Space between title and filter */
+        }
 
-#titleAndFilter h1 {
-    margin-bottom: 10px; /* Space between title and filter */
-}
+        #filterSection {
+            margin-top: 260px;
+            margin-bottom: 10px; /* Adjust spacing under the filter if needed */
+        }
 
-#filterSection {
-    margin-top: 260px;
-    margin-bottom: 10px; /* Adjust spacing under the filter if needed */
-}
+        #filterSection label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
 
-#filterSection label {
-    font-weight: bold;
-    margin-right: 10px;
-}
+        #filterSection select {
+            padding: 5px;
+            border: 1px solid #555;
+            background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+            color: white;
+        }
 
-#filterSection select {
-    padding: 5px;
-    border: 1px solid #555;
-    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
-    color: white;
-}
+        /* Raid Container Section */
+        #raidContainer {
+            flex: 1;
+            border: 1px solid #555;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: rgba(46, 46, 46, .66); /* Apply opacity */
+            color: white;
+            max-width: 400px;
+            margin-left: 20px; /* Adds space from the title and filter section */
+        }
 
-/* Raid Container Section */
-#raidContainer {
-    flex: 1;
-    border: 1px solid #555;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: rgba(46, 46, 46, .66); /* Apply opacity */
-    color: white;
-    width: 300px;
-    margin-left: 20px; /* Adds space from the title and filter section */
-}
+        #raidSelection h3, #canIRaid h3 {
+            margin-bottom: 10px;
+            color: yellow;
+            text-align: center;
+        }
 
-#raidSelection h3, #canIRaid h3 {
-    margin-bottom: 10px;
-    color: yellow;
-    text-align: center;
-}
+        /* Input fields inside Raid Selection */
+        #raidSelection div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
-/* Input fields inside Raid Selection */
-#raidSelection div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+        label {
+            font-weight: bold;
+        }
 
-label {
-    font-weight: bold;
-}
+        input[type="number"] {
+            width: 60px;
+            background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+            color: white;
+            border: 1px solid #555;
+            padding: 5px;
+            text-align: center;
+        }
 
-input[type="number"] {
-    width: 60px;
-    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
-    color: white;
-    border: 1px solid #555;
-    padding: 5px;
-    text-align: center;
-}
-
-#raidStatus {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-}
-        
+        #raidStatus {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
