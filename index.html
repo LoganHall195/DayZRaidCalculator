@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayZ Themed Spreadsheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e2e2e;
+            color: white;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #555;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+        }
+        td input[type="number"], td input[type="text"], td input[type="percentage"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px;
+            width: 100%;
+            text-align: center;
+        }
+        td input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>DayZ Themed Spreadsheet</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Method</th>
+            <th>Amount</th>
+            <th>Wooden Gate</th>
+            <th>Metal Gate</th>
+            <th>Gate Frame</th>
+            <th>Wooden Wall</th>
+            <th>Metal Wall</th>
+            <th>Verified</th>
+            <th>Include %</th>
+            <th>Include</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" placeholder="Type"></td>
+            <td><input type="text" placeholder="Method"></td>
+            <td><input type="number" placeholder="Amount"></td>
+            <td><input type="text" placeholder="Wooden Gate"></td>
+            <td><input type="text" placeholder="Metal Gate"></td>
+            <td><input type="text" placeholder="Gate Frame"></td>
+            <td><input type="text" placeholder="Wooden Wall"></td>
+            <td><input type="text" placeholder="Metal Wall"></td>
+            <td><input type="checkbox"></td>
+            <td><input type="text" placeholder="%"></td>
+            <td><input type="checkbox"></td>
+        </tr>
+        <tr>
+            <td><input type="text" placeholder="Type"></td>
+            <td><input type="text" placeholder="Method"></td>
+            <td><input type="number" placeholder="Amount"></td>
+            <td><input type="text" placeholder="Wooden Gate"></td>
+            <td><input type="text" placeholder="Metal Gate"></td>
+            <td><input type="text" placeholder="Gate Frame"></td>
+            <td><input type="text" placeholder="Wooden Wall"></td>
+            <td><input type="text" placeholder="Metal Wall"></td>
+            <td><input type="checkbox"></td>
+            <td><input type="text" placeholder="%"></td>
+            <td><input type="checkbox"></td>
+        </tr>
+        <!-- More rows can be added similarly -->
+    </tbody>
+</table>
+
+</body>
+</html>
