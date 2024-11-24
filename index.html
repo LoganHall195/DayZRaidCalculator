@@ -3,91 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DayZ Themed Spreadsheet</title>
+    <title>DayZ Raid Calculator</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #2e2e2e;
-            color: white;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #555;
-            text-align: center;
-        }
-        th {
-            background-color: #333;
-        }
-        td input[type="number"], td input[type="text"], td input[type="percentage"] {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 5px;
-            width: 100%;
-            text-align: center;
-        }
-        td input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-        }
+        /* background-image: url('images/image1.png');  */
+
+body {
+    margin: 0 auto;
+    max-width: 1500px;
+    font-family: Arial, sans-serif;
+    color: white;
+    padding: 20px;
+    background-image: url('images/sweetchili2.png'); /* The background image */
+    background-position: top center; /* Align the image to the top */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-size: 100% auto; /* Ensure the image covers the full width */
+    background-color: #2e2e2e; /* Fallback background color */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Prevent columns from wrapping */
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #555;
+    text-align: center;
+}
+
+tbody tr.highlight {
+    background-color: rgba(128, 128, 128, 0.66) !important; /* Force priority for highlighted rows */
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.66); /* Apply opacity */
+}
+
+th.editable {
+    color: yellow;
+}
+
+td input[type="number"], td input[type="text"], td input[type="percentage"], td input[type="checkbox"] {
+    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 80%; /* Center the input fields */
+    text-align: center;
+}
+
+td input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0; /* Remove margin for checkboxes */
+}
+
+td input[disabled] {
+    background-color: #555;
+    color: #777;
+}
+
+/* Highlight editable fields */
+td.editable input {
+    background-color: rgba(68, 68, 68, .66); /* Apply opacity */
+    border: 1px solid #bbb;
+}
+
+td.readonly input {
+    background-color: rgba(85, 85, 85, .66); /* Apply opacity */
+}
+
+/* Highlighted row takes precedence */
+tbody tr.highlight {
+    background-color: rgba(119, 119, 119, .66); /* Apply opacity */
+}
+
+/* Default alternating row colors */
+tbody tr:nth-child(odd) {
+    background-color: rgba(19, 19, 19, 0.66); /* Apply opacity */
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(58, 58, 58, .66); /* Apply opacity */
+}
+
+/* Flexbox container for the top section */
+#topSection {
+    display: flex;
+    align-items: flex-start; /* Align items at the top */
+    justify-content: space-between;
+    margin-bottom: 20px; /* Space between top section and table */
+}
+
+/* Title and Filter Section */
+#titleAndFilter {
+    flex: 2;
+    padding-left: 20px; /* Adds space from the left edge */
+}
+
+#titleAndFilter h1 {
+    margin-bottom: 10px; /* Space between title and filter */
+}
+
+#filterSection {
+    margin-top: 260px;
+    margin-bottom: 10px; /* Adjust spacing under the filter if needed */
+}
+
+#filterSection label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#filterSection select {
+    padding: 5px;
+    border: 1px solid #555;
+    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+    color: white;
+}
+
+/* Raid Container Section */
+#raidContainer {
+    flex: 1;
+    border: 1px solid #555;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(46, 46, 46, .66); /* Apply opacity */
+    color: white;
+    width: 300px;
+    margin-left: 20px; /* Adds space from the title and filter section */
+}
+
+#raidSelection h3, #canIRaid h3 {
+    margin-bottom: 10px;
+    color: yellow;
+    text-align: center;
+}
+
+/* Input fields inside Raid Selection */
+#raidSelection div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 60px;
+    background-color: rgba(51, 51, 51, .66); /* Apply opacity */
+    color: white;
+    border: 1px solid #555;
+    padding: 5px;
+    text-align: center;
+}
+
+#raidStatus {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+        
     </style>
 </head>
 <body>
 
-<h1>DayZ Themed Spreadsheet</h1>
+    <div id="topSection">
+        <!-- Title and Filter Section -->
+        <div id="titleAndFilter">
+            <img src='images/title_white.png' width="700vw"/>
+            <div id="filterSection">
+                <label for="typeFilter">Filter by Type:</label>
+                <select id="typeFilter">
+                    <option value="All">All</option>
+                    <option value="Included">Included</option>
+                    <option value="Ammo">Ammo</option>
+                    <option value="Explosive">Explosive</option>
+                    <option value="Melee">Melee</option>
+                </select>
+            </div>
+        </div>
+    
+        <!-- Raid Controls -->
+        <div id="raidContainer">
+            <div id="raidSelection">
+                <h3>Raid Selection</h3>
+                <div>
+                    <label for="woodenGate">Wooden Gate:</label>
+                    <input type="number" id="woodenGate" placeholder="0" min="0">
+                </div>
+                <div>
+                    <label for="metalGate">Metal Gate:</label>
+                    <input type="number" id="metalGate" placeholder="0" min="0">
+                </div>
+                <div>
+                    <label for="gateFrame">Gate Frame:</label>
+                    <input type="number" id="gateFrame" placeholder="0" min="0">
+                </div>
+                <div>
+                    <label for="woodenWall">Wooden Wall:</label>
+                    <input type="number" id="woodenWall" placeholder="0" min="0">
+                </div>
+                <div>
+                    <label for="metalWall">Metal Wall:</label>
+                    <input type="number" id="metalWall" placeholder="0" min="0">
+                </div>
+            </div>
+    
+            <div id="canIRaid">
+                <h3>Can I Raid?</h3>
+                <p id="raidStatus">No Raid Methods Selected</p>
+            </div>
+        </div>
+    </div>
 
-<table>
+<table id="spreadsheet">
     <thead>
         <tr>
             <th>Type</th>
             <th>Method</th>
-            <th>Amount</th>
+            <th class="editable">Amount</th>
             <th>Wooden Gate</th>
             <th>Metal Gate</th>
             <th>Gate Frame</th>
             <th>Wooden Wall</th>
             <th>Metal Wall</th>
-            <th>Verified</th>
-            <th>Include %</th>
-            <th>Include</th>
+            <th class="editable">Include %</th>
+            <th class="editable">Include</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="text" placeholder="Type" readonly></td>
-            <td><input type="text" placeholder="Method" readonly></td>
-            <td><input type="number" placeholder="Amount"></td>
-            <td><input type="text" placeholder="Wooden Gate" readonly></td>
-            <td><input type="text" placeholder="Metal Gate" readonly></td>
-            <td><input type="text" placeholder="Gate Frame" readonly></td>
-            <td><input type="text" placeholder="Wooden Wall" readonly></td>
-            <td><input type="text" placeholder="Metal Wall" readonly></td>
-            <td><input type="checkbox"></td>
-            <td><input type="text" placeholder="%" pattern="\d+(\.\d{1,2})?" title="Percentage (e.g., 25.5)"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <tr>
-            <td><input type="text" placeholder="Type" readonly></td>
-            <td><input type="text" placeholder="Method" readonly></td>
-            <td><input type="number" placeholder="Amount"></td>
-            <td><input type="text" placeholder="Wooden Gate" readonly></td>
-            <td><input type="text" placeholder="Metal Gate" readonly></td>
-            <td><input type="text" placeholder="Gate Frame" readonly></td>
-            <td><input type="text" placeholder="Wooden Wall" readonly></td>
-            <td><input type="text" placeholder="Metal Wall" readonly></td>
-            <td><input type="checkbox"></td>
-            <td><input type="text" placeholder="%" pattern="\d+(\.\d{1,2})?" title="Percentage (e.g., 25.5)"></td>
-            <td><input type="checkbox"></td>
-        </tr>
-        <!-- More rows can be added similarly -->
+        <!-- Rows will be generated by JavaScript -->
     </tbody>
 </table>
+
+<script>
+// Data structure for rows
+const data = [
+    { type: "Ammo", method: ".308 Win", woodenGate: 193, metalGate: 223, gateFrame: 80, woodenWall: 113, metalWall: 143 },
+    { type: "Ammo", method: ".380 ACP", woodenGate: 808, metalGate: 953, gateFrame: 348, woodenWall: 460, metalWall: 605 },
+    { type: "Ammo", method: ".45 ACP", woodenGate: 753, metalGate: 866, gateFrame: 327, woodenWall: 426, metalWall: 539 },
+    { type: "Ammo", method: "5.45x39", woodenGate: 352, metalGate: 413, gateFrame: 151, woodenWall: 201, metalWall: 262 },
+    { type: "Ammo", method: "5.56x45", woodenGate: 293, metalGate: 345, gateFrame: 126, woodenWall: 167, metalWall: 219 },
+    { type: "Ammo", method: "7.62x39", woodenGate: 328, metalGate: 386, gateFrame: 147, woodenWall: 181, metalWall: 239 },
+    { type: "Ammo", method: "7.62x54", woodenGate: 197, metalGate: 228, gateFrame: 80, woodenWall: 117, metalWall: 148 },
+    { type: "Ammo", method: "9x39", woodenGate: 390, metalGate: 459, gateFrame: 176, woodenWall: 214, metalWall: 283 },
+    { type: "Ammo", method: "Buckshot", woodenGate: 125, metalGate: 146, gateFrame: 61, woodenWall: 64, metalWall: 85 },
+    { type: "Ammo", method: "Slug", woodenGate: 302, metalGate: 315, gateFrame: 122, woodenWall: 180, metalWall: 193 },
+    { type: "Ammo", method: "9x19", woodenGate: 708, metalGate: 837, gateFrame: 248, woodenWall: 460, metalWall: 589 },
+    { type: "Explosive", method: "Claymore", woodenGate: 7, metalGate: 7, gateFrame: 2, woodenWall: 5, metalWall: 5 },
+    { type: "Explosive", method: "Grenade", woodenGate: 12, metalGate: 12, gateFrame: 5, woodenWall: 7, metalWall: 7 },
+    { type: "Explosive", method: "Plastic Explosive", woodenGate: 2, metalGate: 2, gateFrame: 1, woodenWall: 1, metalWall: 1 },
+    { type: "Explosive", method: "Landmine", woodenGate: 35, metalGate: 35, gateFrame: 18, woodenWall: 17, metalWall: 17 },
+    { type: "Melee", method: "Crowbar", woodenGate: 4, metalGate: 5, gateFrame: 2, woodenWall: 2, metalWall: 3 },
+    { type: "Melee", method: "Fire Axe", woodenGate: 9, metalGate: 11, gateFrame: 4, woodenWall: 5, metalWall: 7 },
+    { type: "Melee", method: "Pickaxe", woodenGate: 4, metalGate: 5, gateFrame: 2, woodenWall: 2, metalWall: 3 },
+    { type: "Melee", method: "Shovel", woodenGate: 7, metalGate: 8, gateFrame: 3, woodenWall: 4, metalWall: 5 },
+    { type: "Melee", method: "Sledgehammer", woodenGate: 5, metalGate: 5, gateFrame: 2, woodenWall: 3, metalWall: 3 },
+    { type: "Melee", method: "Spear", woodenGate: 15, metalGate: 18, gateFrame: 7, woodenWall: 8, metalWall: 11 },
+    { type: "Melee", method: "Splitting Axe", woodenGate: 4, metalGate: 5, gateFrame: 2, woodenWall: 2, metalWall: 3 },
+    { type: "Melee", method: "Hatchet", woodenGate: 9, metalGate: 10, gateFrame: 4, woodenWall: 5, metalWall: 6 },
+    { type: "Melee", method: "Machete", woodenGate: 7, metalGate: 8, gateFrame: 3, woodenWall: 4, metalWall: 5 },
+    { type: "Melee", method: "Kitchen Knife", woodenGate: 14, metalGate: 16, gateFrame: 6, woodenWall: 8, metalWall: 10 },
+    { type: "Melee", method: "Baseball Bat", woodenGate: 7, metalGate: 8, gateFrame: 3, woodenWall: 4, metalWall: 5 },
+    { type: "Melee", method: "Hammer", woodenGate: 21, metalGate: 25, gateFrame: 9, woodenWall: 12, metalWall: 16 },
+    { type: "Melee", method: "Stone Knife", woodenGate: 112, metalGate: 113, gateFrame: 48, woodenWall: 64, metalWall: 65 }
+];
+
+// Function to generate rows
+function generateRows(data) {
+    const tbody = document.querySelector('#spreadsheet tbody');
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        
+        // Create the Type and Method cells (readonly)
+        row.innerHTML = `
+            <td><input type="text" value="${item.type}" readonly></td>
+            <td><input type="text" value="${item.method}" readonly></td>
+            <td class="editable"><input type="number" placeholder="Amount" value="${item.amount}" min="0"></td>
+            <td><input type="text" value="${item.woodenGate}" readonly></td>
+            <td><input type="text" value="${item.metalGate}" readonly></td>
+            <td><input type="text" value="${item.gateFrame}" readonly></td>
+            <td><input type="text" value="${item.woodenWall}" readonly></td>
+            <td><input type="text" value="${item.metalWall}" readonly></td>
+            <td class="editable"><input type="number" placeholder="100%" value="${item.includePercent}" min="0" max="100" disabled></td>
+            <td class="editable"><input type="checkbox" ${item.include ? 'checked' : ''}></td>
+        `;
+        
+        // Add event listener for the checkbox to enable/disable the Include % field and highlight the row
+        const checkbox = row.querySelector('td:nth-child(10) input[type="checkbox"]');
+        const percentField = row.querySelector('td:nth-child(9) input[type="number"]');
+
+        checkbox.addEventListener('change', () => {
+            // Enable or disable the percentage field based on the checkbox state
+            if (checkbox.checked) {
+                percentField.disabled = false;
+                row.classList.add('highlight');  // Add highlight class if checked
+            } else {
+                percentField.disabled = true;
+                percentField.value = ''; // Clear the value if unchecked
+                row.classList.remove('highlight');  // Remove highlight class if unchecked
+            }
+        });
+
+        // Append the row to the table body
+        tbody.appendChild(row);
+
+        // Trigger change event in case some rows are pre-checked
+        if (checkbox.checked) {
+            percentField.disabled = false;
+            row.classList.add('highlight');  // Highlight row if pre-checked
+        } else {
+            percentField.disabled = true;
+        }
+    });
+}
+
+// Add event listener to validate Include % field
+function addValidation() {
+    const percentageFields = document.querySelectorAll('input[type="number"][placeholder="100%"]');
+    percentageFields.forEach(input => {
+        input.addEventListener('input', () => {
+            // Parse the current value as a number
+            let value = parseFloat(input.value);
+            
+            // Correct the value if it's out of bounds
+            if (value < 0) {
+                input.value = 100;
+            } else if (value > 100) {
+                input.value = 100;
+            }
+        });
+
+        // Optional: Add a blur event listener to handle invalid inputs after editing
+        input.addEventListener('blur', () => {
+            let value = parseFloat(input.value);
+
+            // Reset to a default value if the input is invalid or empty
+            if (isNaN(value) || input.value.trim() === '') {
+                input.value = 100; // Default value
+            }
+        });
+    });
+}
+
+// Function to filter rows by type
+function filterRows() {
+    const filter = document.getElementById('typeFilter').value;
+    const rows = document.querySelectorAll('#spreadsheet tbody tr');
+
+    rows.forEach(row => {
+        const checkbox = row.querySelector('td:nth-child(10) input[type="checkbox"]');
+        const type = row.querySelector('td:nth-child(1) input').value;
+
+        // Show or hide rows based on the filter
+        if (filter === 'All' || type === filter) {
+            row.style.display = '';
+        } else if (filter === 'Included'){
+            if (checkbox.checked) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+// Attach event listener to the filter dropdown
+document.getElementById('typeFilter').addEventListener('change', filterRows);
+
+// Generate rows and add validation
+generateRows(data);
+addValidation();
+</script>
 
 </body>
 </html>
