@@ -7,6 +7,7 @@ This calculator is meant to give you the rough idea of how many supplies you nee
 - The range from which you are shooting
 - The amount of shots missed
 - And many more factors
+
 The stats you will see on this site are tested from point blank range. For those interested, the guns used to test this are the DMR, Bizon, UMP45, Ak74, AKM, VSD, Vikhir, Vaiga, and MP5. These weapons were chosen as they have the highest magazine capacity for each ammo type.
 
 ## Roadmap
