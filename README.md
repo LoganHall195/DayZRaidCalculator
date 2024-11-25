@@ -13,7 +13,6 @@ The stats you will see on this site are tested from point blank range. For those
 - Verify each method
 - Save amount fields to a browser cookie (Not sure if I can do this on github pages, may need to migrate project to another host for this)
 - Settings option for different backgrounds
-- KoFi icon on webpage
 
 ## Suggestions
 If you have any suggestions for this tool, I am very open to feedback. Whether it is a visual criticism or a functional request - I would love to hear about it.
@@ -31,6 +30,7 @@ If you are interested in testing any of these on your own, please open an 'issue
 
 ## Ko-Fi
 If you like this tool and are interested in supporting me then allow me to direct you to my Kofi Page. Anything is appreciated.
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E716JZRT)
 
 ## Credits
 Verified Statistics
