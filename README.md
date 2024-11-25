@@ -12,7 +12,6 @@ The stats you will see on this site are tested from point blank range. For those
 ## Roadmap
 - Verify each method
 - Save amount fields to a browser cookie (Not sure if I can do this on github pages, may need to migrate project to another host for this)
-- Settings option for different backgrounds
 
 ## Suggestions
 If you have any suggestions for this tool, I am very open to feedback. Whether it is a visual criticism or a functional request - I would love to hear about it.

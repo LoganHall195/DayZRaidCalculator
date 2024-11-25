@@ -335,6 +335,36 @@ function filterRows() {
     });
 }
 
+// Array of background image paths
+const backgrounds = [
+    'images/sweetchili1.png',
+    'images/sweetchili2.png',
+    'images/sweetchili3.png',
+    'images/sweetchili4.png',
+    'images/rekk0r1.png',
+    'images/rekk0r2.png',
+    'images/zulu1.png'
+];
+
+// Randomly select the initial background
+let currentIndex = Math.floor(Math.random() * backgrounds.length);
+
+// Function to change the background
+function changeBackground() {
+    currentIndex = (currentIndex + 1) % backgrounds.length; // Cycle to the next background
+    document.body.style.backgroundImage = `url(${backgrounds[currentIndex]})`; // Update the background
+}
+
+// Listen for the spacebar keypress
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        changeBackground();
+    }
+});
+
+// Set the initial background to a random one
+document.body.style.backgroundImage = `url(${backgrounds[currentIndex]})`;
+
 // Attach event listener to the filter dropdown
 document.getElementById('typeFilter').addEventListener('change', filterRows);
 
