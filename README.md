@@ -11,7 +11,7 @@ This calculator is meant to give you the rough idea of how many supplies you nee
 The stats you will see on this site are tested from point blank range. For those interested, the guns used to test this are the DMR, Bizon, UMP45, Ak74, AKM, VSD, Vikhir, Vaiga, and MP5. These weapons were chosen as they have the highest magazine capacity for each ammo type.
 
 ## Roadmap
-- Add Gun Specific Stats & Not just ammo types
+- Add gun specific stats & not just ammo types
 - Verify each method
 - Save amount fields to a browser cookie (Not sure if I can do this on github pages, may need to migrate project to another host for this)
 
