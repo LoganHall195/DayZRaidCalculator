@@ -28,6 +28,10 @@ Claymore, Grenade, Plastic Explosive, Landmine
 
 If you are interested in testing any of these on your own, please open an 'issue' with the weapon you used and the amount of bullets for each object at point blank range.
 
+## Backgrounds
+I am always open to adding more awesome backgrounds, if you have an image you want to share, feel free to reach out and I may add it!
+Right now, the initial background is random, but you can press space bar to cycle to the next one(s)!
+
 ## Ko-fi
 If you like this tool and are interested in supporting me then allow me to direct you to my Kofi Page. Anything is appreciated.
 
