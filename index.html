@@ -380,6 +380,13 @@ generateRows(data);
     'floating-chat.donateButton.text-color': '#fff'
   });
 </script>
+<script>
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+            event.preventDefault(); // Prevent the default spacebar behavior (scroll)
+        }
+    });
+</script>
 <script src="script.js" defer></script>
 </body>
 </html>
