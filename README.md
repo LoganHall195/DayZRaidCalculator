@@ -1,5 +1,5 @@
 # DayZRaidCalculator
-A Raid Calculator For DayZ
+[A Raid Calculator For DayZ](https://loganhall195.github.io/DayZRaidCalculator/)
 
 ## Accuracy
 This calculator is meant to give you the rough idea of how many supplies you need to bring to a raid. You may notice differences depending on many factors including:
