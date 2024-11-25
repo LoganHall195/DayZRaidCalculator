@@ -28,7 +28,7 @@ Claymore, Grenade, Plastic Explosive, Landmine
 
 If you are interested in testing any of these on your own, please open an 'issue' with the weapon you used and the amount of bullets for each object at point blank range.
 
-## Ko-Fi
+## Ko-fi
 If you like this tool and are interested in supporting me then allow me to direct you to my Kofi Page. Anything is appreciated.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E716JZRT)
