@@ -7,6 +7,7 @@ This calculator is meant to give you the rough idea of how many supplies you nee
 - The range from which you are shooting
 - The amount of shots missed
 - And many more factors
+
 The stats you will see on this site are tested from point blank range. For those interested, the guns used to test this are the DMR, Bizon, UMP45, Ak74, AKM, VSD, Vikhir, Vaiga, and MP5. These weapons were chosen as they have the highest magazine capacity for each ammo type.
 
 ## Roadmap
@@ -27,8 +28,9 @@ Claymore, Grenade, Plastic Explosive, Landmine
 
 If you are interested in testing any of these on your own, please open an 'issue' with the weapon you used and the amount of bullets for each object at point blank range.
 
-## Ko-Fi
+## Ko-fi
 If you like this tool and are interested in supporting me then allow me to direct you to my Kofi Page. Anything is appreciated.
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E716JZRT)
 
 ## Credits
