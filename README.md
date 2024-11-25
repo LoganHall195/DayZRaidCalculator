@@ -15,6 +15,10 @@ The stats you will see on this site are tested from point blank range. For those
 - Settings option for different backgrounds
 - KoFi icon on webpage
 
+## Suggestions
+If you have any suggestions for this tool, I am very open to feedback. Whether it is a visual criticism or a functional request - I would love to hear about it.
+Please open an issue (or comment on an existing one)!
+
 ## Current Statistics WIP
 Currently, not all of the ammo types have been tested, most stats were scraped from the corners of the internet, including:
 - [JournalistTop1482](https://www.reddit.com/r/dayz/comments/1aggae5/updated_raid_chart_vanilla/)
